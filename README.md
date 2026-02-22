@@ -1,7 +1,7 @@
 # MySonar
 
 Desktop audio player with real-time subtitle support.
-**Windows · macOS** — v1.0.1 · Released 2026. 02. 22 · Developed by Hustlyn
+**Windows · macOS** — v1.0.0 · Released 2026. 02. 22 · Developed by Hustlyn
 
 [한국어](README.ko.md) · [日本語](README.ja.md)
 
