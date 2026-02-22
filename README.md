@@ -14,7 +14,7 @@ Desktop audio player with real-time subtitle support.
 
 <br>
 
-**v1.0.0** &nbsp;·&nbsp; Released 2026. 02. 22 &nbsp;·&nbsp; Hustlyn
+**v1.0.1** &nbsp;·&nbsp; Released 2026. 02. 22 &nbsp;·&nbsp; Hustlyn
 
 <br>
 
@@ -245,3 +245,21 @@ User locale files override built-in ones with the same language code.
 | Auto subtitle generation | Generate VTT subtitles from audio using a Whisper model |
 | Custom themes | User-defined color themes via JSON or in-app editor |
 | Manual & Docs | In-app help and online documentation |
+
+---
+
+## Release Notes
+
+<details>
+<summary><strong>v1.0.1</strong> &nbsp;— 2026. 02. 22</summary>
+
+<br>
+
+**Bug Fixes**
+
+- **UNC / SMB network path playback** — Fixed audio files on Windows network shares (`\\server\share\...`) failing to play. The internal URL handler mis-parsed UNC paths, preventing files on SMB shares and NAS devices from loading.
+- **snrpack images on network drives** — Images inside `.snrpack` packages stored on a network share now display correctly.
+- **Track cover bundling in snrpack export** — A same-named image alongside an audio file (e.g. `music.png` next to `music.flac`) is now automatically detected and included when exporting a `.snrpack` package.
+- **Playlist sort persistence** — The sort field and direction set in the playlist panel are now saved and restored across restarts.
+
+</details>
