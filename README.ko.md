@@ -1,13 +1,32 @@
+<p align="right">
+  <a href="README.md">English</a> &nbsp;·&nbsp; <a href="README.ja.md">日本語</a>
+</p>
+
+<div align="center">
+
 # MySonar
 
 실시간 자막을 지원하는 데스크톱 오디오 플레이어.
-**Windows · macOS** — v1.0.1 · 출시일 2026. 02. 22 · 개발 Hustlyn
 
-[English](README.md) · [日本語](README.ja.md)
+<br>
 
----
+![Windows](https://img.shields.io/badge/Windows-Release-0078D4?style=flat-square)&nbsp;&nbsp;![macOS](https://img.shields.io/badge/macOS-QA_Testing-lightgrey?style=flat-square)
 
-![MySonar](docs/screenshot.png)
+<br>
+
+**v1.0.0** &nbsp;·&nbsp; 출시일 2026. 02. 22 &nbsp;·&nbsp; 개발 Hustlyn
+
+<br>
+
+<img src="preview/icon.png" width="72">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="preview/snrpack_icon.png" width="72">
+
+</div>
+
+<br>
+
+<video src="preview/demo.mp4" controls width="100%"></video>
+
+![MySonar](preview/00-page/00-track.png)
 
 ---
 
@@ -57,6 +76,42 @@ rain.flac.zh.srt    ← 중국어 (전체 파일명 형식)
 
 ---
 
+## 패키지 포맷 (.snrpack)
+
+`.snrpack` 파일은 컬렉션 전체(오디오, 자막, 커버 이미지, 메타데이터)를 하나의 파일로 묶어 공유하거나 백업하는 용도로 사용합니다. 내부 구조는 ZIP 아카이브입니다.
+
+**내부 구조:**
+
+```
+collection.snrpack  (ZIP 아카이브)
+├── manifest.json        포맷 버전 및 앱 식별 정보
+├── collection.json      이름, 작성자, 설명, 태그, 트랙 목록, 그룹
+├── audio/               오디오 파일 (탐색 지원을 위해 비압축 저장)
+│   ├── 0/  song.flac
+│   └── 1/  ...  (파일명 충돌 시 인덱스 증가)
+├── images/              커버 이미지 (압축 저장)
+│   └── 0/  cover.jpg
+└── subtitles/           자막 파일, 오디오와 인덱스 일치 (압축 저장)
+    └── 0/  song.en.srt
+             song.ja.vtt
+```
+
+`collection.json` 에는 컬렉션 이름, 작성자, 설명, 태그, 커버 이미지 경로, 트랙 목록이 저장됩니다. 각 트랙 항목에는 오디오 메타데이터(제목, 아티스트, 앨범, 재생 시간, 포맷, 비트레이트 등), 별점, 태그, 그리고 언어 코드와 함께 연결된 자막 파일 목록이 포함됩니다. 트랙 그룹과 순서도 함께 저장됩니다.
+
+**내보내기:** 컬렉션 우클릭 → **패키지 내보내기**
+**가져오기:** `.snrpack` 파일을 앱 창에 드래그하거나, 컬렉션 우클릭 → **패키지 가져오기**
+
+`.snrpack` 파일은 시스템에 커스텀 아이콘으로 등록됩니다. 파일을 더블클릭하거나 **연결 프로그램 → MySonar** 를 사용하면 바로 열 수 있습니다.
+
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="preview/03-packing/30_snrpack.png" width="100%"><br>파일 탐색기에서의 .snrpack 파일</td>
+    <td width="50%" align="center"><img src="preview/03-packing/31_snrpack-open.png" width="100%"><br>더블클릭 또는 연결 프로그램으로 바로 열기</td>
+  </tr>
+</table>
+
+---
+
 ## 기능
 
 ### 재생
@@ -98,6 +153,57 @@ rain.flac.zh.srt    ← 중국어 (전체 파일명 형식)
 
 ---
 
+## 스크린샷
+
+<table>
+  <tr>
+    <td align="center"><img src="preview/00-page/00-track.png"><br>트랙 화면</td>
+    <td align="center"><img src="preview/00-page/01-collection.png"><br>컬렉션</td>
+    <td align="center"><img src="preview/00-page/02-edit_collection.png"><br>컬렉션 편집</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="preview/00-page/03-import-srnpack.png"><br>패키지 가져오기</td>
+    <td align="center"><img src="preview/00-page/04-eq.png"><br>이퀄라이저</td>
+    <td align="center"><img src="preview/00-page/05-password.png"><br>비밀번호 잠금</td>
+  </tr>
+</table>
+
+### 테마
+
+<table>
+  <tr>
+    <td align="center"><img src="preview/02-theme/20_dark.png"><br>Dark</td>
+    <td align="center"><img src="preview/02-theme/21_light.png"><br>Light</td>
+    <td align="center"><img src="preview/02-theme/22_dark-rose.png"><br>Dark Rose</td>
+    <td align="center"><img src="preview/02-theme/23_light-rose.png"><br>Light Rose</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="preview/02-theme/24_dark-marine.png"><br>Light Marine</td>
+    <td align="center"><img src="preview/02-theme/25_dark-marine.png"><br>Dark Marine</td>
+    <td align="center"><img src="preview/02-theme/26_pink.png"><br>Pink</td>
+    <td></td>
+  </tr>
+</table>
+
+### 설정
+
+<table>
+  <tr>
+    <td align="center"><img src="preview/01-settings/10_setting.png"><br>일반</td>
+    <td align="center"><img src="preview/01-settings/11_setting.png"><br>오디오</td>
+    <td align="center"><img src="preview/01-settings/12_setting.png"><br>자막</td>
+    <td align="center"><img src="preview/01-settings/13_setting.png"><br>컨트롤</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="preview/01-settings/14_setting.png"><br>태그</td>
+    <td align="center"><img src="preview/01-settings/15_setting.png"><br>언어</td>
+    <td align="center"><img src="preview/01-settings/16_setting.png"><br>보안</td>
+    <td align="center"><img src="preview/01-settings/17_setting.png"><br>정보</td>
+  </tr>
+</table>
+
+---
+
 ## 단축키
 
 | 키 | 동작 |
@@ -120,10 +226,22 @@ rain.flac.zh.srt    ← 중국어 (전체 파일명 형식)
 
 기본 제공 언어: **영어 · 한국어 · 일본어**
 
-다른 언어를 추가하려면 아래 경로에 `.json` 로케일 파일을 놓으면 됩니다:
+다른 언어를 추가하려면 [sample_local.json](sample_local.json) 을 템플릿으로 사용하세요.
+파일 이름을 `<언어코드>.json` (예: `fr.json`)으로 변경하고 내용을 번역한 뒤, 아래 경로에 넣으면 됩니다:
 
 ```
 <실행 파일 경로>/locales/<언어코드>.json
 ```
 
 같은 언어 코드의 파일이 있으면 사용자 파일이 기본 내장 파일보다 우선 적용됩니다.
+
+---
+
+## 로드맵
+
+| | |
+|---|---|
+| Mac 빌드 및 배포 | 서명된 macOS 릴리즈 빌드 및 배포 |
+| 자막 자동 생성 | Whisper 모델 연동을 통한 VTT 자막 자동 생성 |
+| 사용자 정의 테마 | JSON 파일 또는 앱 내 에디터를 통한 커스텀 테마 지원 |
+| 메뉴얼 & 문서 | 앱 내 도움말 및 온라인 문서 작성 |

@@ -1,13 +1,32 @@
+<p align="right">
+  <a href="README.md">English</a> &nbsp;·&nbsp; <a href="README.ko.md">한국어</a>
+</p>
+
+<div align="center">
+
 # MySonar
 
 リアルタイム字幕対応のデスクトップ音楽プレイヤー。
-**Windows · macOS** — v1.0.1 · リリース日 2026. 02. 22 · 開発 Hustlyn
 
-[English](README.md) · [한국어](README.ko.md)
+<br>
 
----
+![Windows](https://img.shields.io/badge/Windows-Release-0078D4?style=flat-square)&nbsp;&nbsp;![macOS](https://img.shields.io/badge/macOS-QA_Testing-lightgrey?style=flat-square)
 
-![MySonar](docs/screenshot.png)
+<br>
+
+**v1.0.0** &nbsp;·&nbsp; リリース日 2026. 02. 22 &nbsp;·&nbsp; 開発 Hustlyn
+
+<br>
+
+<img src="preview/icon.png" width="72">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="preview/snrpack_icon.png" width="72">
+
+</div>
+
+<br>
+
+<video src="preview/demo.mp4" controls width="100%"></video>
+
+![MySonar](preview/00-page/00-track.png)
 
 ---
 
@@ -57,6 +76,42 @@ rain.flac.zh.srt    ← 中国語（フルファイル名形式）
 
 ---
 
+## パッケージフォーマット (.snrpack)
+
+`.snrpack` ファイルは、コレクション全体（オーディオ・字幕・カバー画像・メタデータ）を1つのファイルにまとめたものです。共有やバックアップに使用します。内部は ZIP アーカイブ形式です。
+
+**内部構造:**
+
+```
+collection.snrpack  (ZIP アーカイブ)
+├── manifest.json        フォーマットバージョンとアプリ識別情報
+├── collection.json      名前・作者・説明・タグ・トラックリスト・グループ
+├── audio/               オーディオファイル（シーク対応のため非圧縮で保存）
+│   ├── 0/  song.flac
+│   └── 1/  ...  （ファイル名が重複する場合はインデックスを増加）
+├── images/              カバー画像（圧縮保存）
+│   └── 0/  cover.jpg
+└── subtitles/           字幕ファイル（オーディオとインデックス対応・圧縮保存）
+    └── 0/  song.en.srt
+             song.ja.vtt
+```
+
+`collection.json` にはコレクション名・作者・説明・タグ・カバー画像パス・トラックリストが格納されます。各トラックにはオーディオのメタデータ（タイトル・アーティスト・アルバム・再生時間・フォーマット・ビットレートなど）・評価・タグ・言語コード付きの字幕ファイル一覧が含まれます。トラックグループと順序も保存されます。
+
+**エクスポート:** コレクションを右クリック → **パッケージをエクスポート**
+**インポート:** `.snrpack` ファイルをアプリウィンドウにドラッグ、またはコレクションを右クリック → **パッケージをインポート**
+
+`.snrpack` ファイルはカスタムアイコン付きでシステムに登録されます。ファイルをダブルクリックするか、**プログラムから開く → MySonar** を使用すると直接開けます。
+
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="preview/03-packing/30_snrpack.png" width="100%"><br>エクスプローラーでの .snrpack ファイル</td>
+    <td width="50%" align="center"><img src="preview/03-packing/31_snrpack-open.png" width="100%"><br>ダブルクリックまたは「プログラムから開く」で直接起動</td>
+  </tr>
+</table>
+
+---
+
 ## 機能
 
 ### 再生
@@ -98,6 +153,57 @@ rain.flac.zh.srt    ← 中国語（フルファイル名形式）
 
 ---
 
+## スクリーンショット
+
+<table>
+  <tr>
+    <td align="center"><img src="preview/00-page/00-track.png"><br>トラック画面</td>
+    <td align="center"><img src="preview/00-page/01-collection.png"><br>コレクション</td>
+    <td align="center"><img src="preview/00-page/02-edit_collection.png"><br>コレクション編集</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="preview/00-page/03-import-srnpack.png"><br>パッケージのインポート</td>
+    <td align="center"><img src="preview/00-page/04-eq.png"><br>イコライザー</td>
+    <td align="center"><img src="preview/00-page/05-password.png"><br>パスワードロック</td>
+  </tr>
+</table>
+
+### テーマ
+
+<table>
+  <tr>
+    <td align="center"><img src="preview/02-theme/20_dark.png"><br>Dark</td>
+    <td align="center"><img src="preview/02-theme/21_light.png"><br>Light</td>
+    <td align="center"><img src="preview/02-theme/22_dark-rose.png"><br>Dark Rose</td>
+    <td align="center"><img src="preview/02-theme/23_light-rose.png"><br>Light Rose</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="preview/02-theme/24_dark-marine.png"><br>Light Marine</td>
+    <td align="center"><img src="preview/02-theme/25_dark-marine.png"><br>Dark Marine</td>
+    <td align="center"><img src="preview/02-theme/26_pink.png"><br>Pink</td>
+    <td></td>
+  </tr>
+</table>
+
+### 設定
+
+<table>
+  <tr>
+    <td align="center"><img src="preview/01-settings/10_setting.png"><br>一般</td>
+    <td align="center"><img src="preview/01-settings/11_setting.png"><br>オーディオ</td>
+    <td align="center"><img src="preview/01-settings/12_setting.png"><br>字幕</td>
+    <td align="center"><img src="preview/01-settings/13_setting.png"><br>コントロール</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="preview/01-settings/14_setting.png"><br>タグ</td>
+    <td align="center"><img src="preview/01-settings/15_setting.png"><br>言語</td>
+    <td align="center"><img src="preview/01-settings/16_setting.png"><br>セキュリティ</td>
+    <td align="center"><img src="preview/01-settings/17_setting.png"><br>About</td>
+  </tr>
+</table>
+
+---
+
 ## キーボードショートカット
 
 | キー | 動作 |
@@ -120,10 +226,22 @@ rain.flac.zh.srt    ← 中国語（フルファイル名形式）
 
 標準搭載：**英語 · 韓国語 · 日本語**
 
-他の言語を追加するには、以下のフォルダに `.json` ロケールファイルを置いてください：
+他の言語を追加するには、[sample_local.json](sample_local.json) をテンプレートとして使用してください。
+ファイル名を `<言語コード>.json`（例: `fr.json`）に変更し、内容を翻訳したうえで以下のフォルダに置いてください：
 
 ```
 <実行ファイルのフォルダ>/locales/<言語コード>.json
 ```
 
 同じ言語コードのファイルがある場合、ユーザーファイルが標準ファイルより優先されます。
+
+---
+
+## ロードマップ
+
+| | |
+|---|---|
+| Mac ビルドと配布 | 署名済み macOS リリースのビルドと配布 |
+| 字幕の自動生成 | Whisper モデルを使ったオーディオからの VTT 字幕自動生成 |
+| カスタムテーマ | JSON ファイルまたはアプリ内エディターによるユーザー定義テーマ |
+| マニュアルとドキュメント | アプリ内ヘルプおよびオンラインドキュメントの整備 |
